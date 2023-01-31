@@ -18,21 +18,12 @@ Tested on Windows (Python 3.8):
 
 Tested on Linux (Python 3.7):
 
-```pip install git+https://github.com/OllieBoyne/sslap.git```
+```pip install git+https://github.com/DAGABO98/sslap.git```
 
 ## Usage
 
 - For usage of the Auction Algorithm, view `examples/test_auction.py`
 - For usage of Hopcroft-Karp, view `examples/test_feasibility.py`
-
-## Benchmarking
-
-The algorithm is best suited for large and sparse problems, where it outperforms `scipy.optimize.linear_sum_assignment`.
-
-See below for some timed comparisons of the runtime for problems of varying density (% of valid entries in the matrix) and matrix size.
-
-![](figs/density_benchmarking.png)
-![](figs/size_benchmarking.png)
 
 ## Notes
 
