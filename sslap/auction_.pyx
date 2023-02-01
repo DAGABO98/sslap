@@ -15,7 +15,7 @@ np.import_array()
 # tolerance to deal with floating point precision for eCE, due to eps being stored as float 32
 cdef double tol = 1e-7
 
-cdef DTYPE = np.float32
+cdef DTYPE = np.float_t
 ctypedef np.float_t DTYPE_t
 cdef float inf = float('infinity')
 
