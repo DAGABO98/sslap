@@ -286,6 +286,8 @@ cdef class AuctionSolver:
 				self.person_to_object[:] = -1
 				self.object_to_person[:] = -1
 				self.num_unassigned = self.num_rows
+				free(self.unassigned_people)
+				free(self.person_to_assignment_idx)
 				self.unassigned_people = arange(self.num_rows)
 				self.person_to_assignment_idx = arange(self.num_rows)
 
@@ -302,6 +304,18 @@ cdef class AuctionSolver:
 		self.meta['obj'] = round(self.get_obj(), 3)
 		self.meta['final_eps'] = round(self.eps, 3)
 		self.meta['timer'] = {k:f"{1000 * v:.2f}ms" for k, v in self.timer.items()}
+
+		# Clean-up
+		free(self.i_starts_stops)
+		free(self.j_counts)
+		free(self.best_bidders)
+		free(self.best_bidded_objects)
+		free(self.p)
+		free(self.best_bids)
+		free(self.flat_j)
+		free(self.unassigned_people)
+		free(self.person_to_assignment_idx)
+
 
 		return self.person_to_object
 
@@ -428,6 +442,9 @@ cdef class AuctionSolver:
 
 		self.num_unassigned += people_to_unassign_ctr - people_to_assign_ctr
 		push_all_left(unassigned_people, person_to_assignment_idx, self.num_unassigned, N)
+		free(bids)
+		free(bidders)
+		free(objects_bidded)
 
 
 	cdef int is_optimal(self):
