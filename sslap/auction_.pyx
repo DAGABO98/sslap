@@ -301,7 +301,6 @@ cdef class AuctionSolver:
 		self.meta['nreductions'] = self.nreductions
 		self.meta['soln_found'] = self.is_optimal()
 		self.meta['n_assigned'] = self.num_rows - self.num_unassigned
-		self.meta['obj'] = round(self.get_obj(), 3)
 		self.meta['final_eps'] = round(self.eps, 3)
 		self.meta['timer'] = {k:f"{1000 * v:.2f}ms" for k, v in self.timer.items()}
 
